@@ -1,4 +1,4 @@
-import Layout from '@/layouts/default'
+import Layout from '@/app/layouts/default'
 import "@/app/styles/globals.css"
 import type { AppProps } from 'next/app'
  
