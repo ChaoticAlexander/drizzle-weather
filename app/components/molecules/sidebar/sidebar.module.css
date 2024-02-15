@@ -1,0 +1,11 @@
+.sidebar {
+  @apply flex flex-col items-center gap-y-8 h-screen mr-8;
+}
+
+.menuItem {
+  @apply flex flex-wrap justify-center gap-y-3;
+}
+
+.menuItem i {
+  @apply basis-full text-center text-2xl h-6;
+}

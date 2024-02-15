@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "@fontsource/poppins";
+@import "~@flaticon/flaticon-uicons/css/all/all";
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+#__next {
+  @apply flex;
+  font-family: 'Poppins', sans-serif;
+  padding: 24px 32px;
+}

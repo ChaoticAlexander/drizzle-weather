@@ -1,0 +1,11 @@
+.dropdown {
+  @apply bg-white shadow-md p-4 border border-solid border-gray-100 rounded-xl w-full absolute top-full;
+  
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}
+
+.dropdown :not(:last-child) {
+  @apply border-b border-solid border-gray-200;
+}
