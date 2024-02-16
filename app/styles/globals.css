@@ -11,7 +11,14 @@
 }
 
 #__next {
-  @apply flex;
+  @apply flex px-4 py-6  md:p-6 gap-x-6;
   font-family: 'Poppins', sans-serif;
-  padding: 24px 32px;
+}
+
+i {
+  @apply text-orange-400;
+}
+
+i::before {
+  @apply block;
 }

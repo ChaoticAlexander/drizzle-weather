@@ -1,15 +1,16 @@
-import React from 'react'
+import style from './currentWeatherCard.module.css'
 
 export default function CurrentWeatherCard() {
   return (
-    <div>
-      <div className="text">
-        <div className="location">Utrecht</div>
-        <div className="chance-of-rain">Chance of rain: 0%</div>
-        <div className="temperature">20°C</div>
+    <div className={style.currentWeatherCard}>
+      <div className={style.textColumn}>
+
+        <div className={style.location}>Utrecht</div>
+        <div className={style.chanceOfRain}>Chance of rain: 0%</div>
+        <div className={style.temperature}>20°C</div>
       </div>
-      <div className="status-icon">
-        <i className="fi fi-sr-cloud"></i>
+      <div className={style.statusIcon}>
+        <i className="fi fi-rr-cloud"></i>
       </div>
     </div>
   )

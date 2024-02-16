@@ -1,0 +1,20 @@
+.statusCard {
+  @apply flex flex-col justify-center p-4 md:p-6;
+  max-height: 118px;
+}
+
+.container {
+  @apply flex gap-x-4;
+}
+
+.statusIcon {
+  @apply text-lg md:text-2xl;
+}
+
+.title {
+  @apply text-xs md:text-sm font-bold mb-2;
+}
+
+.value {
+  @apply text-base md:text-2xl font-bold
+}

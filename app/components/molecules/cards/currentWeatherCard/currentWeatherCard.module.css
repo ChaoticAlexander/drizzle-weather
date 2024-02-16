@@ -1,0 +1,25 @@
+.currentWeatherCard {
+  @apply p-4 md:p-10 flex flex-row w-full;
+  max-height: 244px;
+}
+
+.textColumn {
+  @apply flex flex-col gap-y-2;
+}
+
+.location {
+  @apply text-3xl font-bold;
+}
+
+.chanceOfRain {
+  @apply text-sm;
+}
+
+.temperature {
+  @apply text-4xl md:text-6xl font-bold mt-auto;
+}
+
+.statusIcon {
+  @apply ml-auto flex justify-center;
+  font-size: 9rem;
+}

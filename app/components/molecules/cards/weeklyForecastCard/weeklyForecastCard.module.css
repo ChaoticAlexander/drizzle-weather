@@ -1,0 +1,35 @@
+.weeklyForecastCard {
+  @apply h-full;
+}
+
+.header {
+  @apply font-bold text-sm mb-4;
+}
+
+.content {
+  @apply flex flex-col gap-y-3;
+}
+
+.forecastRow {
+  @apply flex items-center justify-between;
+}
+
+.day {
+  @apply text-sm;
+}
+
+.status {
+  @apply flex items-center justify-center gap-x-2;
+}
+
+.statusIcon {
+  @apply text-3xl md:text-5xl;
+}
+
+.statusName {
+  @apply text-sm;
+}
+
+.temperature {
+  @apply font-bold;
+}

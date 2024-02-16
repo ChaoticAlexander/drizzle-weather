@@ -1,0 +1,31 @@
+.dailyForecastCard {
+  @apply flex flex-col gap-y-6;
+}
+
+.header {
+  @apply font-bold text-sm;
+}
+
+.content {
+  @apply flex h-full items-center justify-between;
+}
+
+.forecastColumn {
+  @apply flex flex-col items-center gap-y-3 w-full;
+}
+
+.forecastColumn:not(:last-child) {
+  @apply border-r border-gray-200;
+}
+
+.hour {
+  @apply font-bold text-xs;
+}
+
+.statusIcon {
+  @apply text-3xl md:text-5xl;
+}
+
+.temperature {
+  @apply font-bold text-xl;
+}
