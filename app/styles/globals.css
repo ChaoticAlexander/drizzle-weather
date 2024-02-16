@@ -11,8 +11,9 @@
 }
 
 #__next {
-  @apply flex px-4 py-6  md:p-6 gap-x-6;
+  @apply flex px-4 py-6  md:p-6 lg:mx-auto gap-x-6;
   font-family: 'Poppins', sans-serif;
+  max-width: 1280px;
 }
 
 i {

@@ -1,5 +1,5 @@
 .currentWeatherCard {
-  @apply p-4 md:p-10 flex flex-row w-full;
+  @apply p-4 md:p-8 flex flex-row w-full;
   max-height: 244px;
 }
 
@@ -16,10 +16,14 @@
 }
 
 .temperature {
-  @apply text-4xl md:text-6xl font-bold mt-auto;
+  @apply text-4xl sm:text-6xl font-bold mt-auto;
 }
 
 .statusIcon {
-  @apply ml-auto flex justify-center;
-  font-size: 9rem;
+  @apply ml-auto flex items-center;
+  font-size: 7rem;
+
+  @media (min-width: 640px) {
+    font-size: 9rem;
+  }
 }
