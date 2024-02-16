@@ -11,7 +11,8 @@
 }
 
 .forecastRow {
-  @apply flex items-center justify-between;
+  @apply grid items-center justify-between;
+  grid-template-columns: 1.5fr 2fr 1fr;
 }
 
 .day {
@@ -31,5 +32,5 @@
 }
 
 .temperature {
-  @apply font-bold;
+  @apply font-bold ml-auto;
 }
