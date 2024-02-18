@@ -2,11 +2,15 @@
   @apply w-full p-2 border-solid border-2 border-gray-300 rounded-xl outline-none relative;
 }
 
-.clearButton {
+.inputAction, .loadingIcon {
   @apply absolute top-0 right-4 h-full flex items-center;
 }
 
-.clearButton > i {
+.loadingIcon > i {
+  @apply text-gray-400 animate-spin;
+}
+
+.inputAction > i {
   @apply text-gray-700;
   height: 16px;
   width: 16px;

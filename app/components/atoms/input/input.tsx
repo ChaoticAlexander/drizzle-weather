@@ -1,18 +1,22 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import style from './input.module.css'
 
 interface Props {
   placeholder?: string
   value?: string
+  loading?: boolean
   onChange?: Function
   onFocus?: Function
+  onClear?: Function
 }
 
-export default function Input({ placeholder, value, onChange, onFocus }: Readonly<Props>) {
+export default function Input({ placeholder, value, loading, onChange, onFocus, onClear }: Readonly<Props>) {
 
-  const inputField = useRef<HTMLInputElement|null>(null)
+  const [ inputValue, setInputValue ] = useState<string>(value ?? '')
+  const shouldShowClearButton = !!inputValue.length && !loading
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value)
     onChange?.(e.target.value)
   }
 
@@ -21,27 +25,31 @@ export default function Input({ placeholder, value, onChange, onFocus }: Readonl
   }
 
   function handleOnClear() {
-    if (!inputField.current) return
-    inputField.current.value = ''
-    onChange?.('')
+    setInputValue('')
+    onClear?.()
   }
 
   return (
     <div className="input-container relative">
       <input
-        ref={inputField}
         className={style.input}
         type="text"
         placeholder={placeholder}
-        value={value}
+        value={inputValue}
         onChange={handleOnChange}
         onFocus={handleOnFocus}
       />
       {
-        !!inputField?.current?.value?.length && 
-        <button className={style.clearButton} onClick={handleOnClear}>
+        shouldShowClearButton && 
+        <button className={style.inputAction} onClick={handleOnClear}>
           <i className="fi fi-sr-cross-circle" />
         </button>
+      }
+      {
+        loading && 
+        <div className={style.loadingIcon}>
+          <i className="fi fi-sr-spinner" />
+        </div>
       }
     </div>
   )

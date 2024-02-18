@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getWeatherData } from './actions/weatherDataActions';
 
+const filterHourlyEntries = (data) => {
+  return data.filter(entry => {
+    const timestamp = entry.dt;
+    const date = new Date(timestamp * 1000);
+    return date.getHours() % 3 === 0;
+  }).slice(0, 3);
+}
+
 export const weatherDataSlice = createSlice({
   name: 'weatherData',
   initialState: {
@@ -15,7 +23,7 @@ export const weatherDataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getWeatherData.fulfilled, (state, action) => {
-      state.weatherData = action.payload;
+      console.log('after', filterHourlyEntries(action.payload.hourly))
     });
   }
 });

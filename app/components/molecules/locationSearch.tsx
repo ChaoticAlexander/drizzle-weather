@@ -6,13 +6,13 @@ import Input from '@/app/components/atoms/input/input'
 import Dropdown from  '@/app/components/atoms/dropdown/dropdown'
 
 interface Props  {
-  value?: string
   onSelected?: (resultItem: GeolocationResultItem) => void
 }
 
-export default function LocationSearch({ value,  onSelected }: Readonly<Props>) {
+export default function LocationSearch({ onSelected }: Readonly<Props>) {
   
   const componentRef = useRef<HTMLDivElement|null>(null)
+  const [ loading, setLoading ] = useState(false)
   const [ results, setResults ] = useState<GeolocationResultItem[]>([])
   const [ timeoutId, setTimeoutId ] = useState<number|null>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -36,8 +36,11 @@ export default function LocationSearch({ value,  onSelected }: Readonly<Props>) 
       clearTimeout(timeoutId)
     }
     const id = window.setTimeout(() => {
+      setLoading(true)
       getLocationResults(value).then((data) => {
         setResults(data)
+        setLoading(false)
+        setIsDropdownOpen(true)
       })
     }, 1000)
     setTimeoutId(id)
@@ -50,21 +53,26 @@ export default function LocationSearch({ value,  onSelected }: Readonly<Props>) 
 
   function handleOnChange(value: string) {
     if (value) handleSearch(value)
-    setIsDropdownOpen(value.length > 0 && results.length > 0)
   }
 
   function handleOnFocus(value: string) {
     setIsDropdownOpen(value.length > 0)
+  }
+
+  function handleOnClear() {
+    setResults([])
+    setIsDropdownOpen(false)
   }
   
 
   return (
     <div ref={componentRef} className="relative">
       <Input
-        value={value}
+        loading={loading}
         placeholder="Search.."
         onChange={handleOnChange}
         onFocus={handleOnFocus}
+        onClear={handleOnClear}
       />
       {
         isDropdownOpen &&
@@ -77,8 +85,8 @@ export default function LocationSearch({ value,  onSelected }: Readonly<Props>) 
               onClick={() => handleSelectResult(item)}
             >
               <div>{item.name}</div>
-              <div className="text-sm text-gray-500">
-                { [item.state, item.country].join(', ') }
+              <div className="text-sm text-gray-400">
+                { [item.state, item.country].filter(i=>i).join(', ') }
               </div>
             </button>
           ))
