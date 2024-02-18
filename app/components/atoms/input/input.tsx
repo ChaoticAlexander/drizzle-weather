@@ -38,7 +38,7 @@ export default function Input({ placeholder, value, onChange, onFocus }: Readonl
         onFocus={handleOnFocus}
       />
       {
-        !!inputField?.current?.value.length && 
+        !!inputField?.current?.value?.length && 
         <button className={style.clearButton} onClick={handleOnClear}>
           <i className="fi fi-sr-cross-circle" />
         </button>

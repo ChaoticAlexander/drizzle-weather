@@ -6,6 +6,6 @@
   row-gap: .5rem;
 }
 
-.dropdown :not(:last-child) {
+.dropdown > :not(:last-child) {
   @apply border-b border-solid border-gray-200;
 }

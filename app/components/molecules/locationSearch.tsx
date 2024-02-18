@@ -1,12 +1,20 @@
 "use client"
 import { useRef, useState, useEffect } from 'react'
+import { getLocationResults } from '@/lib/weatherData/actions/geolocationActions'
+import { GeolocationResultItem } from '@/app/types/geolocation'
 import Input from '@/app/components/atoms/input/input'
 import Dropdown from  '@/app/components/atoms/dropdown/dropdown'
 
-export default function Searchbar() {
+interface Props  {
+  value?: string
+  onSelected?: (resultItem: GeolocationResultItem) => void
+}
+
+export default function LocationSearch({ value,  onSelected }: Readonly<Props>) {
   
   const componentRef = useRef<HTMLDivElement|null>(null)
-  const results: string[] = ["result 1", "result 2", "result 3", "result 4", "result 5"]
+  const [ results, setResults ] = useState<GeolocationResultItem[]>([])
+  const [ timeoutId, setTimeoutId ] = useState<number|null>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   // Defines a function to close the dropdown when clicking outside of it
@@ -23,12 +31,26 @@ export default function Searchbar() {
     }
   }, [isDropdownOpen])
 
-  function handleSelectResult() {
+  function handleSearch(value: string) {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+    const id = window.setTimeout(() => {
+      getLocationResults(value).then((data) => {
+        setResults(data)
+      })
+    }, 1000)
+    setTimeoutId(id)
+  }
+
+  function handleSelectResult(resultItem: any) {
+    onSelected?.(resultItem)
     setIsDropdownOpen(false)
   }
 
   function handleOnChange(value: string) {
-    setIsDropdownOpen(value.length > 0)
+    if (value) handleSearch(value)
+    setIsDropdownOpen(value.length > 0 && results.length > 0)
   }
 
   function handleOnFocus(value: string) {
@@ -39,6 +61,7 @@ export default function Searchbar() {
   return (
     <div ref={componentRef} className="relative">
       <Input
+        value={value}
         placeholder="Search.."
         onChange={handleOnChange}
         onFocus={handleOnFocus}
@@ -47,13 +70,16 @@ export default function Searchbar() {
         isDropdownOpen &&
         <Dropdown className="absolute top-full">
           {results?.length
-          ? results.map((result) => (
+          ? results.map((item) => (
             <button
-              key={result}
+              key={[item.lat, item.lon].join(',')}
               className="p-2 hover:bg-gray-200 cursor-pointer text-left"
-              onClick={handleSelectResult}
+              onClick={() => handleSelectResult(item)}
             >
-              {result}
+              <div>{item.name}</div>
+              <div className="text-sm text-gray-500">
+                { [item.state, item.country].join(', ') }
+              </div>
             </button>
           ))
           : <div className="text-gray-400 text-center">No results found</div>}
