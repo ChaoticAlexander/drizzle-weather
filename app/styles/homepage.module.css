@@ -17,7 +17,3 @@
 .contentContainer {
   @apply flex flex-col;
 }
-
-.statusCards {
-  @apply grid grid-cols-2 gap-x-6 gap-y-4 h-full;
-}

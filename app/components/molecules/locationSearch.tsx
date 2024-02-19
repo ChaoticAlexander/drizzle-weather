@@ -1,7 +1,7 @@
 "use client"
 import { useRef, useState, useEffect } from 'react'
-import { getLocationResults } from '@/lib/weatherData/actions/geolocationActions'
-import { GeolocationResultItem } from '@/app/types/geolocation'
+import { getLocationResults } from '@/lib/store/weatherData/actions/geolocationActions'
+import { GeolocationResultItem } from '@/lib/types/geolocation'
 import Input from '@/app/components/atoms/input/input'
 import Dropdown from  '@/app/components/atoms/dropdown/dropdown'
 
@@ -46,7 +46,7 @@ export default function LocationSearch({ onSelected }: Readonly<Props>) {
     setTimeoutId(id)
   }
 
-  function handleSelectResult(resultItem: any) {
+  function handleSelectResult(resultItem: GeolocationResultItem) {
     onSelected?.(resultItem)
     setIsDropdownOpen(false)
   }

@@ -1,5 +1,5 @@
 import Card from "@/app/components/atoms/card";
-import style from './statusCard.module.css';
+import style from './MetricsCard.module.css';
 
 interface Props {
   title: string;
@@ -7,7 +7,7 @@ interface Props {
   icon: string;
 }
 
-export default function StatusCard({ title, value, icon }: Readonly<Props>) {
+export default function MetricsCard({ title, value, icon }: Readonly<Props>) {
   return (
     <Card className={style.statusCard}>
       <div className={style.container}>
