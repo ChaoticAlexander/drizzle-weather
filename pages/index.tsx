@@ -10,7 +10,7 @@ import {GeolocationResultItem} from "@/lib/types/geolocation";
 import {WeatherMetricsCardGrid} from "@/app/components/molecules/cards/WeatherMetricsCardGrid";
 
 export default function Home() {
-  const [weatherData, fetchWeatherData] = useWeatherData()
+  const [_weatherData, fetchWeatherData] = useWeatherData()
   const metrics = useCurrentWeatherMetrics()
   const handleLocationSelected = (location: GeolocationResultItem) => {
     fetchWeatherData(location)

@@ -1,4 +1,3 @@
-import style from "@/app/styles/homepage.module.css";
 import MetricsCard from "@/app/components/molecules/cards/metricsCard/MetricsCard";
 import { Metric } from "@/lib/types/common";
 
