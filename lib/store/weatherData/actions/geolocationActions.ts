@@ -1,5 +1,9 @@
 import {GeolocationResultItem, GeolocationResultsSchema} from '@/lib/types/geolocation'
 
+/**
+ * Fetches location results from the server
+ * @param searchTerm
+ */
 export const getLocationResults = async (searchTerm: string) => {
   try {
     const response = await fetch(`/api/location/search?q=${searchTerm}`)

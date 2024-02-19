@@ -3,6 +3,9 @@ import {RootState} from "@/lib/store/store";
 import {GeolocationResultItem} from "@/lib/types/geolocation";
 import {getWeatherData} from "@/lib/store/weatherData/actions/weatherDataActions";
 
+/**
+ * Custom hook to fetch weather data and return the current weather data
+ */
 export default function useWeatherData() {
     const dispatch = useDispatch()
     const currentWeather = useSelector((state: RootState) => state.weatherData.weatherData)

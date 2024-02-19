@@ -5,6 +5,12 @@ const params = z.object({
     lat: z.string(),
     lon: z.string(),
 });
+
+/**
+ * Fetches weather data from the server
+ * @param req
+ * @param res
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'GET') {
         res.status(405).json({error: 'Method Not Allowed'});
