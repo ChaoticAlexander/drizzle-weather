@@ -1,8 +1,8 @@
-import MetricsCard from "@/app/components/molecules/cards/metricsCard/MetricsCard";
-import { Metric } from "@/lib/types/common";
+import MetricsCard from "@/app/components/molecules/cards/metricsCard/MetricsCard"
+import { Metric } from "@/lib/types/common"
 
 interface Props {
-    statuses: Metric[];
+    statuses: Metric[]
 }
 export function WeatherMetricsCardGrid({ statuses }: Readonly<Props>) {
     return (
@@ -16,5 +16,5 @@ export function WeatherMetricsCardGrid({ statuses }: Readonly<Props>) {
                 />
             })}
         </div>
-    );
+    )
 }

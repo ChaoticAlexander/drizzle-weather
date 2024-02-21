@@ -1,9 +1,9 @@
-import { CurrentWeather } from "@/lib/types/weatherData";
+import { CurrentWeather } from "@/lib/types/weatherData"
 
 interface MetricsMapper {
-    title: string;
-    icon: string;
-    value: (cw: CurrentWeather) => string | number;
+    title: string
+    icon: string
+    value: (cw: CurrentWeather) => string | number
 }
 
 const metricsMappers: MetricsMapper[] = [
@@ -41,16 +41,16 @@ const metricsMappers: MetricsMapper[] = [
         title: 'Sunrise',
         icon: 'fi-rr-sunrise',
         value: (cw) => {
-            const date = new Date(cw.sunrise * 1000);
-            return date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
+            const date = new Date(cw.sunrise * 1000)
+            return date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})
         }
     },
     {
         title: 'Sunset',
         icon: 'fi-rr-sunset',
         value: (cw) => {
-            const date = new Date(cw.sunset * 1000);
-            return date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'});
+            const date = new Date(cw.sunset * 1000)
+            return date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})
         }
     }
 ]

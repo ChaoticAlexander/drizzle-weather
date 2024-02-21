@@ -1,15 +1,15 @@
-import Card from '@/app/components/atoms/card';
-import style from './weeklyForecastCard.module.css';
+import Card from '@/app/components/atoms/card'
+import style from './weeklyForecastCard.module.css'
 
 interface WeeklyForecastItem {
-  day: string;
-  status: string;
-  icon: string;
-  temperature: string;
+  day: string
+  status: string
+  icon: string
+  temperature: string
 }
 
 interface Props {
-  weeklyForecastData: WeeklyForecastItem[];
+  weeklyForecastData: WeeklyForecastItem[]
 }
 
 export default function WeeklyForecastCard({ weeklyForecastData }: Readonly<Props>) {

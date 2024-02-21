@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 const GeolocationResultItemSchema = z.object({
   name: z.string(),
@@ -7,14 +7,14 @@ const GeolocationResultItemSchema = z.object({
   lon: z.number(),
   country: z.string(),
   state: z.string().optional(),
-});
+})
 
-const GeolocationResultsSchema = z.array(GeolocationResultItemSchema);
+const GeolocationResultsSchema = z.array(GeolocationResultItemSchema)
 
 // Types
 
-type GeolocationResultItem = z.infer<typeof GeolocationResultItemSchema>;
-type GeolocationResults = z.infer<typeof GeolocationResultsSchema>;
+type GeolocationResultItem = z.infer<typeof GeolocationResultItemSchema>
+type GeolocationResults = z.infer<typeof GeolocationResultsSchema>
 
 export {
   GeolocationResultItemSchema,

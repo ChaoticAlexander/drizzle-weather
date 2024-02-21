@@ -1,10 +1,10 @@
-import Card from "@/app/components/atoms/card";
-import style from './MetricsCard.module.css';
+import Card from "@/app/components/atoms/card"
+import style from './MetricsCard.module.css'
 
 interface Props {
-  title: string;
-  value: string | number;
-  icon: string;
+  title: string
+  value: string | number
+  icon: string
 }
 
 export default function MetricsCard({ title, value, icon }: Readonly<Props>) {

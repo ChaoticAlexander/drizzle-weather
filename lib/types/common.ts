@@ -1,7 +1,7 @@
 interface Metric {
-    title: string;
-    icon: string;
-    value: string | number;
+    title: string
+    icon: string
+    value: string | number
 }
 
 export type {

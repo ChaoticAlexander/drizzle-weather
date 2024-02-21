@@ -1,81 +1,48 @@
 "use client"
-import { useRef, useState, useEffect } from 'react'
-import { getLocationResults } from '@/lib/store/weatherData/actions/geolocationActions'
 import { GeolocationResultItem } from '@/lib/types/geolocation'
 import Input from '@/app/components/atoms/input/input'
 import Dropdown from  '@/app/components/atoms/dropdown/dropdown'
+import {useClickOutside} from "@/lib/hooks/clickOutside"
+import { useGeolocationSearch } from "@/lib/hooks/geolocationSearch"
 
 interface Props  {
   onSelected?: (resultItem: GeolocationResultItem) => void
 }
 
 export default function LocationSearch({ onSelected }: Readonly<Props>) {
-  
-  const componentRef = useRef<HTMLDivElement|null>(null)
-  const [ loading, setLoading ] = useState(false)
-  const [ results, setResults ] = useState<GeolocationResultItem[]>([])
-  const [ timeoutId, setTimeoutId ] = useState<number|null>(null)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-
-  // Defines a function to close the dropdown when clicking outside of it
-  useEffect(() => {
-    if (!isDropdownOpen) return
-    const handleClickOutside = (event: MouseEvent) => {
-      if (componentRef?.current && !componentRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [isDropdownOpen])
-
-  function handleSearch(value: string) {
-    if (timeoutId) {
-      clearTimeout(timeoutId)
-    }
-    const id = window.setTimeout(() => {
-      setLoading(true)
-      getLocationResults(value).then((data) => {
-        setResults(data)
-        setLoading(false)
-        setIsDropdownOpen(true)
-      })
-    }, 1000)
-    setTimeoutId(id)
-  }
+  const { isOpen, setIsOpen, componentRef } = useClickOutside()
+  const { results, clearResults, isLoading, fetchLocationResults, saveLocationToStore } = useGeolocationSearch()
 
   function handleSelectResult(resultItem: GeolocationResultItem) {
+    saveLocationToStore(resultItem)
     onSelected?.(resultItem)
-    setIsDropdownOpen(false)
+    setIsOpen(false)
   }
 
   function handleOnChange(value: string) {
-    if (value) handleSearch(value)
+    if (value) fetchLocationResults(value)
+        .then(() => setIsOpen(true))
+    else {
+        clearResults()
+        setIsOpen(false)
+    }
   }
 
   function handleOnFocus(value: string) {
-    setIsDropdownOpen(value.length > 0)
+    setIsOpen(value.length > 0)
   }
-
-  function handleOnClear() {
-    setResults([])
-    setIsDropdownOpen(false)
-  }
-  
 
   return (
     <div ref={componentRef} className="relative">
       <Input
-        loading={loading}
+        loading={isLoading}
         placeholder="Search.."
         onChange={handleOnChange}
         onFocus={handleOnFocus}
-        onClear={handleOnClear}
+        onClear={handleOnChange}
       />
       {
-        isDropdownOpen &&
+        isOpen &&
         <Dropdown className="absolute top-full">
           {results?.length
           ? results.map((item) => (

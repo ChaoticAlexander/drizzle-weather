@@ -1,6 +1,6 @@
 interface Props {
   children: React.ReactNode,
-  className?: string;
+  className?: string
 }
 
 export default function Card({ children, className = '' }: Readonly<Props>) {

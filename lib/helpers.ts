@@ -1,6 +1,6 @@
-import {CurrentWeather, HourlyEntry, Precipitation} from "@/lib/types/weatherData";
-import { MetricsMapper } from "@/lib/dataMappings/metrics";
-import { Metric } from "@/lib/types/common";
+import {CurrentWeather, HourlyEntry, Precipitation} from "@/lib/types/weatherData"
+import { MetricsMapper } from "@/lib/dataMappings/metrics"
+import { Metric } from "@/lib/types/common"
 
 /**
  * Filters the hourly entries to only include entries every 3 hours
@@ -8,10 +8,10 @@ import { Metric } from "@/lib/types/common";
  */
 const filterHourlyEntries = (entries: HourlyEntry[]): HourlyEntry[] => {
     return entries.filter(entry => {
-        const timestamp = entry.dt;
-        const date = new Date(timestamp * 1000);
-        return date.getHours() % 3 === 0;
-    }).slice(0, 3);
+        const timestamp = entry.dt
+        const date = new Date(timestamp * 1000)
+        return date.getHours() % 3 === 0
+    }).slice(0, 3)
 }
 
 /**
@@ -20,11 +20,11 @@ const filterHourlyEntries = (entries: HourlyEntry[]): HourlyEntry[] => {
  */
 const getPrecipitation = (entry: Precipitation): number => {
     if (typeof entry === 'number') {
-        return entry;
+        return entry
     } else if (typeof entry === 'object') {
-        return entry['1h'];
+        return entry['1h']
     } else {
-        return 0;
+        return 0
     }
 }
 
@@ -42,8 +42,24 @@ const getMappedStatuses = (currentWeather: CurrentWeather, mappings: MetricsMapp
     })
 }
 
+const getChanceOfRain = (precipitation: Precipitation): string  => {
+    const value = getPrecipitation(precipitation)
+    let chance: number
+    if (!value || value <= 0.1) {
+        chance = 0; // No chance of rain
+    } else if (value <= 2.5) {
+        chance = 30; // Low chance of rain
+    } else if (value <= 7.5) {
+        chance = 60; // Moderate chance of rain
+    } else {
+        chance = 90; // High chance of rain
+    }
+    return `${chance}%`
+}
+
 export {
     filterHourlyEntries,
     getPrecipitation,
-    getMappedStatuses
+    getMappedStatuses,
+    getChanceOfRain
 }

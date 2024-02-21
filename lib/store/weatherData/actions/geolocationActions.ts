@@ -11,7 +11,7 @@ export const getLocationResults = async (searchTerm: string) => {
     // TODO: Handle case of duplicate results
     return GeolocationResultsSchema.parse(data)
   } catch (error: any) {
-    throw new Error(`Error fetching or validating data: ${error.message}`);
+    throw new Error(`Error fetching or validating data: ${error.message}`)
   }
 }
 
