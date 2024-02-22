@@ -11,7 +11,7 @@ export default function WeeklyForecastCard() {
     <Card className={style.WeeklyForecastCard}>
       <div className={style.header}>7-Day Forecast</div>
       <div className={style.content}>
-        { weeklyForecastEntries?.map((item) => { console.log(item.temp); return (
+        { weeklyForecastEntries?.map((item) => (
           <div key={getDay(item.dt)} className={style.forecastRow}>
             <div className={style.day}>{getDay(item.dt)}</div>
             <div className={style.status}>
@@ -20,7 +20,7 @@ export default function WeeklyForecastCard() {
             </div>
             <div className={style.temperature}>{item.temp.day.toFixed(1)}°C</div>
           </div>
-          )}
+          )
         )}
       </div>
     </Card>
