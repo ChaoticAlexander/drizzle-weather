@@ -2,7 +2,7 @@
 import { GeolocationResultItem } from '@/lib/types/geolocation'
 import Input from '@/app/components/atoms/input/input'
 import Dropdown from  '@/app/components/atoms/dropdown/dropdown'
-import {useClickOutside} from "@/lib/hooks/clickOutside"
+import { useClickOutside } from "@/lib/hooks/clickOutside"
 import { useGeolocationSearch } from "@/lib/hooks/geolocationSearch"
 
 interface Props  {

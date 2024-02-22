@@ -1,4 +1,4 @@
-import {CurrentWeather, HourlyEntry, Precipitation, WeatherIcon} from "@/lib/types/weatherData"
+import { CurrentWeather, HourlyEntry, Precipitation, WeatherIcon } from "@/lib/types/weatherData"
 import { MetricsMapper } from "@/lib/dataMappings/metrics"
 import { iconMap } from "@/lib/dataMappings/weatherIcons"
 import { Metric } from "@/lib/types/common"

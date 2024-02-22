@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import {GeolocationResultItem} from '@/lib/types/geolocation'
-import {WeatherData, WeatherDataSchema} from '@/lib/types/weatherData'
+import { GeolocationResultItem } from '@/lib/types/geolocation'
+import { WeatherData, WeatherDataSchema } from '@/lib/types/weatherData'
 
 /**
  * Fetches weather data from the server

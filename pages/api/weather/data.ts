@@ -1,5 +1,5 @@
-import {NextApiRequest, NextApiResponse} from "next"
-import {z} from "zod"
+import { NextApiRequest, NextApiResponse } from "next"
+import { z } from "zod"
 
 const params = z.object({
     lat: z.string(),

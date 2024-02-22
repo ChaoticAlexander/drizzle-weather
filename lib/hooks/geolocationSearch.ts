@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { setLocationData } from "@/lib/store/weatherData/weatherDataSlice"
 import { getLocationResults } from "@/lib/store/weatherData/actions/geolocationActions"
-import {GeolocationResultItem} from "@/lib/types/geolocation"
+import { GeolocationResultItem } from "@/lib/types/geolocation"
 
 export function useGeolocationSearch() {
     const dispatch = useDispatch()

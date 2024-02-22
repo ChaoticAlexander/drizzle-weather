@@ -1,8 +1,8 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getWeatherData } from './actions/weatherDataActions'
 import { WeatherData } from '@/lib/types/weatherData'
 import { filterHourlyEntries } from '@/lib/helpers'
-import {GeolocationResultItem} from "@/lib/types/geolocation"
+import { GeolocationResultItem } from "@/lib/types/geolocation"
 
 
 interface WeatherDataInitialState {

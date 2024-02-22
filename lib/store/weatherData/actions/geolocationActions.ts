@@ -1,4 +1,4 @@
-import {GeolocationResultItem, GeolocationResultsSchema} from '@/lib/types/geolocation'
+import { GeolocationResultItem, GeolocationResultsSchema } from '@/lib/types/geolocation'
 
 /**
  * Fetches location results from the server
