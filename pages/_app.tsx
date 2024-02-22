@@ -1,4 +1,4 @@
-import Layout from '@/app/layouts/default'
+import DefaultLayout from '@/app/layouts/root'
 import "@/app/styles/globals.css"
 import type { AppProps } from 'next/app'
 import wrapper from '@/lib/store/store'
@@ -6,9 +6,9 @@ import wrapper from '@/lib/store/store'
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-    <Layout>
+    <DefaultLayout>
       <Component {...pageProps} />
-    </Layout>
+    </DefaultLayout>
   )
 }
 
