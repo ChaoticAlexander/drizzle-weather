@@ -1,5 +1,25 @@
 import { z } from 'zod'
 
+const WeatherIconSchema = z.enum([
+  '01d',
+  '02d',
+  '03d',
+  '04d',
+  '09d',
+  '10d',
+  '11d',
+  '13d',
+  '50d',
+  '01n',
+  '02n',
+  '03n',
+  '04n',
+  '09n',
+  '10n',
+  '11n',
+  '13n',
+  '50n'
+])
 const AlertSchema = z.object({
   description: z.string(),
   end: z.number(),
@@ -11,7 +31,7 @@ const AlertSchema = z.object({
 
 const WeatherSchema = z.object({
   description: z.string(),
-  icon: z.string(),
+  icon: WeatherIconSchema,
   id: z.number(),
   main: z.string(),
 })
@@ -90,6 +110,7 @@ type CurrentWeather = z.infer<typeof CurrentWeatherSchema>
 type DailyEntry = z.infer<typeof DailyEntrySchema>
 type HourlyEntry = z.infer<typeof HourlyEntrySchema>
 type Alert = z.infer<typeof AlertSchema>
+type WeatherIcon = z.infer<typeof WeatherIconSchema>
 
 export {
   WeatherDataSchema,
@@ -101,7 +122,8 @@ export {
   CurrentWeatherSchema,
   DailyEntrySchema,
   HourlyEntrySchema,
-  AlertSchema
+  AlertSchema,
+  WeatherIconSchema
 }
 
 export type {
@@ -114,5 +136,6 @@ export type {
   CurrentWeather,
   DailyEntry,
   HourlyEntry,
-  Alert
+  Alert,
+  WeatherIcon
 }

@@ -1,9 +1,10 @@
 import style from './currentWeatherCard.module.css'
-import useWeatherData from "@/lib/hooks/WeatherData"
-import { getChanceOfRain } from "@/lib/helpers"
+import { useWeatherData } from "@/lib/hooks/WeatherData"
+import { getChanceOfRain, getMappedWeatherIcon } from "@/lib/helpers"
 
 export default function CurrentWeatherCard() {
-    const { weatherData, locationData} = useWeatherData()
+  const { weatherData, locationData } = useWeatherData()
+  const icon = weatherData ? getMappedWeatherIcon(weatherData?.current.weather[0].icon) : null
 
   return (
     <div className={style.currentWeatherCard}>
@@ -14,7 +15,7 @@ export default function CurrentWeatherCard() {
         <div className={style.temperature}>{weatherData?.current.temp.toFixed(1)}°C</div>
       </div>
       <div className={style.statusIcon}>
-        <i className="fi fi-rr-cloud"></i>
+        <i className={`fi ${icon}`}></i>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@
 
 .forecastRow {
   @apply grid items-center justify-between;
-  grid-template-columns: 1.5fr 2fr 1fr;
+  grid-template-columns: 1.25fr 2fr 1.25fr;
 }
 
 .day {
@@ -20,15 +20,15 @@
 }
 
 .status {
-  @apply flex items-center justify-center gap-x-2;
+  @apply grid grid-cols-2 items-center justify-center gap-x-2;
 }
 
 .statusIcon {
-  @apply text-3xl md:text-5xl;
+  @apply text-3xl md:text-5xl mx-auto;
 }
 
 .statusName {
-  @apply text-sm;
+  @apply text-sm mx-auto text-center;
 }
 
 .temperature {

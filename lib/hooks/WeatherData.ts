@@ -7,14 +7,13 @@ import { AppDispatch } from "@/lib/store/store"
 /**
  * Custom hook to fetch weather data and return the current weather data
  */
-export default function useWeatherData() {
+export function useWeatherData() {
     const dispatch: AppDispatch = useDispatch()
-    const weatherData = useSelector((state: RootState) => state.weatherData.weatherData)
-    const locationData = useSelector((state: RootState) => state.weatherData.locationData)
+    const { weatherData, locationData, loading } = useSelector((state: RootState) => state.weatherData)
 
     const fetchWeatherData = (resultItem: GeolocationResultItem) => {
         dispatch(getWeatherData(resultItem))
     }
 
-    return { weatherData, locationData, fetchWeatherData }
+    return { weatherData, locationData, loading, fetchWeatherData }
 }

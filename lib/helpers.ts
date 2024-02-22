@@ -1,5 +1,6 @@
-import {CurrentWeather, HourlyEntry, Precipitation} from "@/lib/types/weatherData"
+import {CurrentWeather, HourlyEntry, Precipitation, WeatherIcon} from "@/lib/types/weatherData"
 import { MetricsMapper } from "@/lib/dataMappings/metrics"
+import { iconMap } from "@/lib/dataMappings/weatherIcons"
 import { Metric } from "@/lib/types/common"
 
 /**
@@ -57,9 +58,26 @@ const getChanceOfRain = (precipitation: Precipitation): string  => {
     return `${chance}%`
 }
 
+const getMappedWeatherIcon = (icon: WeatherIcon) => {
+    return iconMap[icon]
+}
+
+const getTime = (dt: number): string => {
+    const date = new Date(dt * 1000)
+    return `${String(date.getHours()).padStart(2, '0')}:00`
+}
+
+const getDay = (dt: number): string => {
+    const date = new Date(dt * 1000)
+    return date.toLocaleString('en-US', {weekday: 'long'})
+}
+
 export {
     filterHourlyEntries,
     getPrecipitation,
     getMappedStatuses,
-    getChanceOfRain
+    getChanceOfRain,
+    getMappedWeatherIcon,
+    getTime,
+    getDay
 }

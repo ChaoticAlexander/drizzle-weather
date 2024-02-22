@@ -1,28 +1,22 @@
-import { weeklyForecast } from '@/testData/homepage'
-import React, { useEffect } from 'react'
 import style from '@/app/styles/homepage.module.css'
 import LocationSearch from '@/app/components/molecules/locationSearch'
 import CurrentWeatherCard from '@/app/components/molecules/cards/currentWeatherCard/currentWeatherCard'
-import DailyForecastCard from '@/app/components/molecules/cards/dailyForecastCard/dailyForecastCard'
+import HourlyForecastCard from '@/app/components/molecules/cards/hourlyForecastCard/HourlyForecastCard'
 import WeeklyForecastCard from '@/app/components/molecules/cards/weeklyForecastCard/weeklyForecastCard'
-import useWeatherData from '@/lib/hooks/WeatherData'
-import useCurrentWeatherMetrics from '@/lib/hooks/CurrentWeatherMetrics'
-import {GeolocationResultItem} from "@/lib/types/geolocation"
-import {WeatherMetricsCardGrid} from "@/app/components/molecules/cards/WeatherMetricsCardGrid"
+import { useWeatherData } from '@/lib/hooks/WeatherData'
+import { GeolocationResultItem } from "@/lib/types/geolocation"
+import { WeatherMetricsCardGrid } from "@/app/components/molecules/cards/WeatherMetricsCardGrid"
 
 export default function Home() {
-  const { locationData, fetchWeatherData } = useWeatherData()
-  const metrics = useCurrentWeatherMetrics()
+  const { locationData, weatherData, loading,  fetchWeatherData } = useWeatherData()
 
   const handleLocationSelected = (location: GeolocationResultItem) => {
     fetchWeatherData(location)
   }
 
-  // Temporary until default location and SSR is properly implemented.
-  useEffect(() => {
-    fetchWeatherData(locationData)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // Temporary till SSR is implemented
+  if (!weatherData && !loading) fetchWeatherData(locationData)
+  if (!weatherData) return <div>Loading...</div>
 
   return (
     <div className={style.homepageContainer}>
@@ -32,11 +26,11 @@ export default function Home() {
       <div className={style.contentContainer}>
         <div className={style.homepageRow}>
           <CurrentWeatherCard />
-          <DailyForecastCard />
+          <HourlyForecastCard />
         </div>
         <div className={style.homepageRow}>
-          <WeatherMetricsCardGrid statuses={metrics} />
-          <WeeklyForecastCard weeklyForecastData={weeklyForecast} />
+          <WeatherMetricsCardGrid />
+          <WeeklyForecastCard />
         </div>
       </div>
     </div>

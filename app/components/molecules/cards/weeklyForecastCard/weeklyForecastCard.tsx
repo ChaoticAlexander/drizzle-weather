@@ -1,32 +1,26 @@
 import Card from '@/app/components/atoms/card'
 import style from './weeklyForecastCard.module.css'
+import { useWeatherData } from "@/lib/hooks/WeatherData"
+import { getDay, getMappedWeatherIcon } from "@/lib/helpers"
 
-interface WeeklyForecastItem {
-  day: string
-  status: string
-  icon: string
-  temperature: string
-}
+export default function WeeklyForecastCard() {
+  const { weatherData } = useWeatherData();
+  const weeklyForecastEntries = weatherData?.daily.slice(1, 8)
 
-interface Props {
-  weeklyForecastData: WeeklyForecastItem[]
-}
-
-export default function WeeklyForecastCard({ weeklyForecastData }: Readonly<Props>) {
   return (
     <Card className={style.WeeklyForecastCard}>
       <div className={style.header}>7-Day Forecast</div>
       <div className={style.content}>
-        { weeklyForecastData.map((item) => (
-          <div key={item.day} className={style.forecastRow}>
-            <div className={style.day}>{item.day}</div>
+        { weeklyForecastEntries?.map((item) => { console.log(item.temp); return (
+          <div key={getDay(item.dt)} className={style.forecastRow}>
+            <div className={style.day}>{getDay(item.dt)}</div>
             <div className={style.status}>
-              <i className={`fi ${item.icon} ${style.statusIcon}`}></i>
-              <span className={style.statusName}>{item.status}</span>
+              <i className={`fi ${getMappedWeatherIcon(item.weather[0].icon)} ${style.statusIcon}`}></i>
+              <span className={style.statusName}>{item.weather[0].description}</span>
             </div>
-            <div className={style.temperature}>{item.temperature}</div>
+            <div className={style.temperature}>{item.temp.day.toFixed(1)}°C</div>
           </div>
-          )
+          )}
         )}
       </div>
     </Card>
