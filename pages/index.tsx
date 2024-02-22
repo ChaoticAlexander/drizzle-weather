@@ -1,9 +1,9 @@
 import style from '@/app/styles/homepage.module.css'
-import LocationSearch from '@/app/components/molecules/locationSearch'
-import CurrentWeatherCard from '@/app/components/molecules/cards/currentWeatherCard/currentWeatherCard'
+import LocationSearch from '@/app/components/molecules/LocationSearch'
+import CurrentWeatherCard from '@/app/components/molecules/cards/currentWeatherCard/CurrentWeatherCard'
 import HourlyForecastCard from '@/app/components/molecules/cards/hourlyForecastCard/HourlyForecastCard'
-import WeeklyForecastCard from '@/app/components/molecules/cards/weeklyForecastCard/weeklyForecastCard'
-import { useWeatherData } from '@/lib/hooks/WeatherData'
+import WeeklyForecastCard from '@/app/components/molecules/cards/weeklyForecastCard/WeeklyForecastCard'
+import { useWeatherData } from '@/lib/hooks/weatherData'
 import { GeolocationResultItem } from "@/lib/types/geolocation"
 import { WeatherMetricsCardGrid } from "@/app/components/molecules/cards/WeatherMetricsCardGrid"
 

@@ -1,6 +1,6 @@
 import Card from "@/app/components/atoms/card"
 import style from './HourlyForecastCard.module.css'
-import { useWeatherData } from "@/lib/hooks/WeatherData"
+import { useWeatherData } from "@/lib/hooks/weatherData"
 import { filterHourlyEntries, getMappedWeatherIcon, getTime } from "@/lib/helpers"
 
 export default function HourlyForecastCard() {

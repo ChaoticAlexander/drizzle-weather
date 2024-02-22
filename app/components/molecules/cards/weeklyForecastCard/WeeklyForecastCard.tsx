@@ -1,6 +1,6 @@
 import Card from '@/app/components/atoms/card'
-import style from './weeklyForecastCard.module.css'
-import { useWeatherData } from "@/lib/hooks/WeatherData"
+import style from './WeeklyForecastCard.module.css'
+import { useWeatherData } from "@/lib/hooks/weatherData"
 import { getDay, getMappedWeatherIcon } from "@/lib/helpers"
 
 export default function WeeklyForecastCard() {

@@ -1,5 +1,5 @@
-import style from './currentWeatherCard.module.css'
-import { useWeatherData } from "@/lib/hooks/WeatherData"
+import style from './CurrentWeatherCard.module.css'
+import { useWeatherData } from "@/lib/hooks/weatherData"
 import { getChanceOfRain, getMappedWeatherIcon } from "@/lib/helpers"
 
 export default function CurrentWeatherCard() {
