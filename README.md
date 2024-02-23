@@ -2,7 +2,7 @@
 
 This is a simple weather forecast application created using Next.js and Tailwind CSS.  
 The application uses the OpenWeatherMap API to fetch the weather data.  
-The application is deployed on Netlify and can be accessed [here](https://drizzle-weather.netlify.app/).
+### The application is deployed on Netlify and can be accessed [here](https://drizzle-weather.netlify.app/).
 
 ## Getting Started
 
